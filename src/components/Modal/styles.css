@@ -1,0 +1,26 @@
+.modal-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-container .modal {
+  display: flex;
+  flex-direction: column;
+  width: 788px;
+  height: 792px;
+
+  background-color: #F6F2F2;
+  border-radius: 5px;
+}
+
+.modal .close-modal {
+  cursor: pointer;
+  align-self: flex-end;
+  margin-right: 20px;
+  margin-top: 10px;
+  font-size: 26px;
+}
