@@ -23,16 +23,20 @@
 <script>
   export default {
     props: {
-      anime: Object,
+      anime: {
+        type: Object,
+        required: true
+      },
     },
+    emits: ['openModal'],
     methods: {
       openModal() {
         this.$emit('openModal', {
           mode: 'edit',
-          anime: this.anime,
+          anime: this.anime.id,
         });
       }
-    }
+    },
   }
 </script>
 

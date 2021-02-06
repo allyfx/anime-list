@@ -12,12 +12,17 @@
             type="text"
             class="input_field"
             placeholder="Digite o nome"
-            v-model="newAnime.name"
+            :value="selectedAnime.name"
+            @input="selectedAnime = { key: 'name', value: $event.target.value }"
           />
         </div>
         <div class="form_row">
           <label>Status: </label>
-          <select name="" id=""></select>
+          <Select
+            :options="options"
+            :selectedOption="selectedAnime.status"
+            @handleSelect="handleSelect"
+          />
         </div>
         <div class="form_row">
           <label>Total eps.: </label>
@@ -25,7 +30,8 @@
             type="number"
             class="input_field"
             placeholder="Digite o total de episódios"
-            v-model="newAnime.totalEps"
+            :value="selectedAnime.totalEps"
+            @input="selectedAnime = { key: 'totalEps', value: $event.target.value }"
           />
         </div>
         <div class="form_row">
@@ -34,7 +40,8 @@
             type="number"
             class="input_field"
             placeholder="Digite o total de episódios assistidos"
-            v-model="newAnime.watched"
+            :value="selectedAnime.watched"
+            @input="selectedAnime = { key: 'watched', value: $event.target.value }"
           />
         </div>
         <div class="form_row">
@@ -43,7 +50,8 @@
             type="text"
             class="input_field"
             placeholder="Ex.: https://www..."
-            v-model="newAnime.url"
+            :initialValue="selectedAnime.url"
+            @input="selectedAnime = { key: 'url', value: $event.target.value }"
           />
         </div>
       </div>
@@ -62,39 +70,71 @@
 </template>
 
 <script>
+  import Select from '../Select';
+
   export default {
-    data() {
-      return {
-        newAnime: {},
-      };
-    },
     props: {
       open: Boolean,
-      mode: String,
+      mode: {
+        type: String,
+        default: 'create'
+      },
       anime: {
         type: Object,
         default() {
           return {
             id: 0,
             name: '',
-            status: '',
+            status: 'Status',
             watched: 0,
             totalEps: 0
           };
         }
       },
     },
-    watch: {
-      anime() {
-        this.newAnime = this.anime;
-      }
+    data() {
+      return {
+        newAnime: this.anime,
+        options: [
+          {
+            id: 1,
+            value: 'Não começou'
+          },
+          {
+            id: 2,
+            value: 'Assistindo'
+          },
+          {
+            id: 3,
+            value: 'Terminou'
+          },
+        ]
+      };
     },
+    emits: ['changeOpen', 'submitAnime'],
     computed: {
       display() {
         return this.open ? 'flex' : 'none';
       },
       buttonTitle() {
         return this.mode === 'edit' ? 'Editar' : 'Adicionar'
+      },
+      selectedAnime: {
+        set(data) {
+          this.newAnime = Object.assign(
+            {},
+            this.newAnime,
+            { [data.key]: data.value }
+          );
+        },
+        get() {
+          return this.newAnime;
+        }
+      }
+    },
+    watch: {
+      anime(newAnim) {
+        this.newAnime = Object.assign({}, newAnim);
       }
     },
     methods: {
@@ -122,6 +162,12 @@
           });
         this.changeOpen();
       },
+      handleSelect(selected) {
+        this.newAnime.status = selected;
+      }
+    },
+    components: {
+      Select,
     }
   }
 </script>

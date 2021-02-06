@@ -21,6 +21,7 @@
         }
       }
     },
+    emits: ['openModal'],
     components: {
       AnimeItem,
     },

@@ -9,11 +9,18 @@
 
 <script>
   export default {
+    emits: ['openModal'],
     methods: {
       openModal() {
         this.$emit('openModal', {
           mode: 'create',
-          anime: {}
+          anime: {
+            id: 0,
+            name: '',
+            status: 'Status',
+            watched: 0,
+            totalEps: 0
+          }
         });
       }
     }
