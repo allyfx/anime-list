@@ -10,6 +10,7 @@
 .modal-container .modal {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 788px;
   height: 792px;
 
@@ -23,4 +24,76 @@
   margin-right: 20px;
   margin-top: 10px;
   font-size: 26px;
+}
+
+.modal img {
+  height: 322px;
+  width: 652px;
+  border-radius: 5px;
+  background-color: #D4F5E9;
+}
+
+.modal .form {
+  margin-top: 18px;
+  width: 652px;
+}
+
+.modal .form .form_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal .form .form_row + .form_row {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.modal .form .form_row label {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: #1A3B34;
+}
+
+.modal .form .form_row .input_field {
+  flex: 1;
+  height: 47px;
+  border: 0;
+  background: #40DF9F;
+  border-radius: 5px;
+  padding-left: 12px;
+  margin-left: 10px;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #EEEEEE;
+}
+
+.modal .buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  column-gap: 38px;
+}
+
+.modal .buttons button {
+  cursor: pointer;
+  width: 220px;
+  height: 56px;
+  border-radius: 5px;
+  border: 0;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ECECFD;
+}
+
+.modal .buttons .add_button {
+  background: #3DD598;
+}
+
+.modal .buttons .remove_button {
+  background: #FF464F;
 }
