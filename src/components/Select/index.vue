@@ -44,7 +44,6 @@ export default {
   methods: {
     changeOpen() {
       this.open = !this.open;
-      console.log(this.open);
     },
     handleSelect(selected) {
       this.$emit('handleSelect', selected);

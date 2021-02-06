@@ -145,7 +145,14 @@
         if (this.mode === 'edit') {
           this.$emit('submitAnime', {
             mode: 'edit',
-            anime: this.newAnime,
+            anime: {
+              id: this.selectedAnime.id,
+              name: this.selectedAnime.name,
+              url: this.selectedAnime.url,
+              watched: this.selectedAnime.watched,
+              totalEps: this.selectedAnime.totalEps,
+              status: this.selectedAnime.status,
+            },
           });
         } else {
           this.$emit('submitAnime', {

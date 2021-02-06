@@ -56,18 +56,20 @@
       },
       submitAnime(state) {
         if (state.mode === 'edit') {
-          let animeIndex = -1;
-          this.animes.map((anim, index) => {
+          let newAnimes = this.animes.map((anim) => {
             if (anim.id === state.anime.id) {
-              animeIndex = index;
+              anim = state.anime;
             }
+
+            return anim;
           });
 
-          if (animeIndex) {
-            this.animes.splice(animeIndex, 1, state.anime);
-          }
+          this.animes = newAnimes;
         } else if(state.mode === 'create') {
-          this.animes.push(state.anime);
+          this.animes.push({
+            ...state.anime,
+            id: this.animes.length + 1
+          });
         } else if(state.mode === 'delete') {
           let animeIndex = -1;
           this.animes.map((anim, index) => {
